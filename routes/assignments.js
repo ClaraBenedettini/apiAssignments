@@ -62,27 +62,17 @@ const getAssignment = async (req, res) => {
   }
 }
 
-// Récupérer les infos d'une matière par son id (GET)
-const getMatiere = async (req, res) => {
-  let matiereId = req.params.id;
-  
-    const matiere = await Matiere.findById(matiereId);
-
-    if (matiere) {
-      res.send(matiere);
-    }
-    else {
-      res.status(404).send({ message: 'Matiere not found' });
-    }
-}
-
 // Ajout d'un assignment (POST)
 function postAssignment(req, res) {
   let assignment = new Assignment();
-  assignment.id = req.body.id;
   assignment.nom = req.body.nom;
   assignment.dateLimite = req.body.dateLimite;
   assignment.etat = req.body.etat;
+  assignment.matiere = req.body.matiere;
+  assignment.note = req.body.note;
+  assignment.remarque = req.body.remarque;
+  assignment.nomEleve = req.body.nomEleve;
+  assignment.formationConcernee = req.body.formationConcernee;
 
   console.log("POST assignment reçu :");
   console.log(assignment)
